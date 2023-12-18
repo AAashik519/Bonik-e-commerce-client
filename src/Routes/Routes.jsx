@@ -17,6 +17,7 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import AllProduct from "../pages/AllProduct/AllProduct";
 import UpdateProduct from "../components/UpdateProduct/UpdateProduct";
 import ProductList from "../components/ProductList/ProductList";
+import CategoryProduct from "../components/CategoryProduct/CategoryProduct";
 
 
 const router = createBrowserRouter([
@@ -31,15 +32,16 @@ const router = createBrowserRouter([
         {
           path:'/product/:id',
           element : <PrivateRoute><ProductDetails /></PrivateRoute>,
-          loader : ({params}) => fetch(`http://localhost:5000/product/${params.id}`)
+          loader : ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
         },
         {
           path:'/addproduct',
           element :<AddProduct />
         },
         {
-          path:'/product/:category',
-          element : <AllProduct />
+          path:'/products/:category',
+          element : <CategoryProduct />,
+          loader : async ({params})=> await fetch(`http://localhost:5000/product/${params.category}`)
         },
         {
           path:'/contact',
@@ -76,7 +78,7 @@ const router = createBrowserRouter([
         {
           path:'/dashboard/updateProduct/:id',
           element :<UpdateProduct />,
-          loader :async ({params})=> fetch(`http://localhost:5000/product/${params.id}`)
+          loader :async ({params})=> fetch(`http://localhost:5000/products/${params.id}`)
         },
         {
           path:'/dashboard/productList',

@@ -10,7 +10,7 @@ const ProductDetails = () => {
   const [,  refetch]= useBookings()
 
   const loadProduct = useLoaderData()
-  // console.log(loadProduct);
+  console.log(loadProduct);
   // console.log(user.email);
 
   const {_id,cover ,name ,category ,description ,price ,ratings}= loadProduct
